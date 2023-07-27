@@ -1,0 +1,49 @@
+<?php
+
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\block\Entity\BlockContentTypeInterface;
+use Drupal\block_content\Entity\BlockContent;
+
+/**
+ * Implements hook_entity_type_alter() to add block placement for the form.
+ */
+function customauction_entity_type_alter(array &$entity_types) {
+  if (isset($entity_types['block_content'])) {
+    $entity_types['block_content']->setFormClass('default', '\Drupal\customauction\Form\CustomauctionForm');
+  }
+}
+
+/**
+ * Implements hook_block_info_alter() to define the customauction block.
+ */
+// customauction.module
+
+/**
+ * Implements hook_block_info().
+ */
+function customauction_block_info() {
+  $blocks['my_form_block'] = [
+    'info' => t('My Custom Form Block'),
+    
+  ];
+
+  return $blocks;
+}
+
+/**
+ * Implements hook_block_view().
+ */
+function customauction_block_view($delta = '') {
+  $block = [];
+
+  switch ($delta) {
+    case 'my_form_block':
+      $form = \Drupal::formBuilder()->getForm('Drupal\customauction\Form\customauctionForm');
+      $block['content'] = $form;
+      break;
+  }
+
+  return $block;
+}
+

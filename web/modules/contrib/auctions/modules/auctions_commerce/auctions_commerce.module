@@ -1,0 +1,60 @@
+<?php
+
+/**
+ * @file
+ */
+
+use Drupal\auctions_core\Entity\AuctionBid;
+use Drupal\auctions_core\Entity\AuctionItem;
+use Drupal\commerce_order\Entity\OrderItem;
+use Drupal\Core\Entity\EntityInterface;
+
+/**
+ * Implements hook_auctions_core_workflow_action().
+ *
+ * AUCTION CORE HOOK.
+ *
+ * allow other modules to interact upon auction_item workflow changes.
+ */
+function auctions_commerce_auctions_core_workflow_action(AuctionItem $auctionItem, $workflow) {
+  $auctionTools = \Drupal::service('auctions_commerce.orderItem');
+  switch ($workflow) {
+    // Bidding open.
+    case 1:
+      // Auction relisted.
+    case 2:
+      break;
+
+    // Auction closed.
+    case 3:
+      if ($auctionItem->hasBids()) {
+        $topthree = $auctionItem->getBids($auctionItem->getRelistCount());
+        $key = \array_keys($topthree);
+        $topBid = $topthree[$key[0]];
+        $auctionTools->createAuctionOrderItem($topBid);
+      }
+      break;
+  }
+
+}
+
+/**
+ * This is a utility function simply to give easy proceedural access.
+ */
+function auctions_commerce_createAuctionOrderItem(AuctionBid $auctionBid) {
+  $orderItemToolkit = \Drupal::service('auctions_commerce.orderItem');
+  $orderItem = $orderItemToolkit->createAuctionOrderItem($auctionBid);
+  return $orderItem;
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_delete(): commerce_order_item.
+ */
+function auctions_commerce_commerce_order_item_delete(EntityInterface $entity) {
+
+  // If 'User' removes auction_item from their cart, handle that process.
+  if ($entity instanceof OrderItem && $entity->get('type')->getString() == 'auction_item') {
+    // todo: bid reject workflow. @bidPurchaseOffer
+    // todo! email story & owner that this order item has removed form cart.. @bidPurchaseOffer
+  }
+}

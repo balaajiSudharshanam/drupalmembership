@@ -1,0 +1,5 @@
+name: newfield
+type: module
+description: new field like comments
+core_version_requirement: ^8.8 || ^9 || ^10
+package: Example

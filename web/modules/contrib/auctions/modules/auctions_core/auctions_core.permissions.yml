@@ -1,0 +1,86 @@
+add auction items entities:
+  title: 'Create new Auction Items entities'
+
+administer auction items entities:
+  title: 'Administer Auction Items entities'
+  description: 'Allow to access the administration form to configure Auction Items entities.'
+  restrict access: true
+
+delete auction items entities:
+  title: 'Delete Auction Items entities'
+
+edit auction items entities:
+  title: 'Edit Auction Items entities'
+
+view published auction items entities:
+  title: 'View published Auction Items entities'
+
+view unpublished auction items entities:
+  title: 'View unpublished Auction Items entities'
+
+view all auction items revisions:
+  title: 'View all Auction Items revisions'
+
+revert all auction items revisions:
+  title: 'Revert all Auction Items revisions'
+  description: 'Role requires permission <em>view Auction Items revisions</em> and <em>edit rights</em> for auction items entities in question or <em>administer auction items entities</em>.'
+
+delete all auction items revisions:
+  title: 'Delete all revisions'
+  description: 'Role requires permission to <em>view Auction Items revisions</em> and <em>delete rights</em> for auction items entities in question or <em>administer auction items entities</em>.'
+
+add auction bids entities:
+  title: 'Create new Auction Bid(s) entities'
+
+administer auction bids entities:
+  title: 'Administer Auction Bid(s) entities'
+  description: 'Allow to access the administration form to configure Auction Bid(s) entities.'
+  restrict access: true
+
+delete auction bids entities:
+  title: 'Delete Auction Bid(s) entities'
+
+edit auction bids entities:
+  title: 'Edit Auction Bid(s) entities'
+
+view published auction bidsentities:
+  title: 'View published Auction Bid(s) entities'
+
+view unpublished auction bids entities:
+  title: 'View unpublished Auction Bid(s) entities'
+
+see bidders names:
+  title: 'See bidders name'
+  description: 'Allows to see full bidders names.'
+
+add auction autobid entities:
+  title: 'Create new Auction Autobid entities'
+
+administer auction autobid entities:
+  title: 'Administer Auction Autobid entities'
+  description: 'Allow to access the administration form to configure Auction Autobid entities.'
+  restrict access: true
+
+delete auction autobid entities:
+  title: 'Delete Auction Autobid entities'
+
+edit auction autobid entities:
+  title: 'Edit Auction Autobid entities'
+
+view published auction autobid entities:
+  title: 'View published Auction Autobid entities'
+
+view unpublished auction autobid entities:
+  title: 'View unpublished Auction Autobid entities'
+
+view all auction autobid revisions:
+  title: 'View all Auction Autobid revisions'
+
+revert all auction autobid revisions:
+  title: 'Revert all Auction Autobid revisions'
+  description: 'Role requires permission <em>view Auction Autobid revisions</em> and <em>edit rights</em> for auction autobid entities in question or <em>administer auction autobid entities</em>.'
+
+delete all auction autobid revisions:
+  title: 'Delete all revisions'
+  description: 'Role requires permission to <em>view Auction Autobid revisions</em> and <em>delete rights</em> for auction autobid entities in question or <em>administer auction autobid entities</em>.'
+

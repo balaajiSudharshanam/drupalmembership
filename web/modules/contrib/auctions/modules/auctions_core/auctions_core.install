@@ -1,0 +1,28 @@
+<?php
+
+/**
+ * @file
+ * Contains auctions_core.module.
+ */
+
+/**
+ *
+ */
+function auctions_core_install() {
+  // Enable Auction Mail tooklit (soft dependency)
+  \Drupal::service('module_installer')->install(['auctions_mail']);
+
+}
+
+/**
+ *
+ */
+function auctions_core_uninstall() {
+  // Disable Auction Mail tooklit (soft dependency)
+  \Drupal::service('module_installer')->uninstall(['auctions_mail']);
+
+  // Remove the general confs this module uses.
+  \Drupal::configFactory()->getEditable('auctions.item_settings')->delete();
+  \Drupal::configFactory()->getEditable('editor.editor.auction_html')->delete();
+  \Drupal::configFactory()->getEditable('filter.format.auction_html')->delete();
+}

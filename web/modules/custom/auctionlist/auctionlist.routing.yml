@@ -1,0 +1,32 @@
+auctionlist.delete:
+  path: '/auctionlist/delete/{id}/{nid}'
+  defaults:
+    _controller: '\Drupal\auctionlist\Controller\AuctionListController::deleteRecord'
+    _title: 'Delete Record'
+  requirements:
+    _permission: 'administer site configuration'
+    id: \d+
+
+auctionlist.claim:
+  path: '/auctionlist/claim/{id}/{nid}/{cu}'
+  defaults:
+    _controller: '\Drupal\auctionlist\Controller\AuctionListController::claim'
+    _title: 'claim'
+  requirements:
+    _permission: 'administer site configuration'
+    id: \d+
+
+# auctionlist.download.file:
+#   path: '/download/file/{file_name}'
+#   defaults:
+#     _controller: '\Drupal\auctionlist\Controller\Download::downloadFile'
+#   requirements:
+#     _permission: 'access content'
+auctionlist.edit:
+  path: '/edit'
+  defaults:
+    _form: '\Drupal\auctionlist\Form\editForm'
+    _title: 'bidding'
+  requirements:
+    _permission: 'access content'
+    _access: 'TRUE'

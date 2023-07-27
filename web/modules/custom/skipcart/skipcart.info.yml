@@ -1,0 +1,5 @@
+name: skipcart
+type: module
+description: 'skips add to cart'
+package: Commerce
+core_version_requirement: ^9.3 || ^10

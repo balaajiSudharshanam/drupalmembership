@@ -1,0 +1,14 @@
+<?php
+
+/**
+ * @file
+ * Contains auctions_core.module.
+ */
+
+/**
+ *
+ */
+function auctions_mail_uninstall() {
+  // Remove the general confs this module uses.
+  \Drupal::configFactory()->getEditable('auctions_mail.content')->delete();
+}

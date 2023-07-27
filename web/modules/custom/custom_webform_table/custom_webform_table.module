@@ -1,0 +1,42 @@
+<?php
+
+use Drupal\webform\Entity\WebformSubmission;
+use Psr\Log\LoggerInterface;
+use Drupal\Core\Messenger\MessengerInterface;
+
+/**
+ * Implements hook_form_alter().
+ */
+function custom_webform_table_form_alter(&$form, &$form_state, $form_id) {
+  // Replace 'my_content_type' with the actual machine name of your content type.
+  if ($form_id === 'webform_submission_auction_add_form') {
+    $node = \Drupal::routeMatch()->getParameter('node');
+    if ($node instanceof \Drupal\node\NodeInterface && $node->getType() === 'membership') {
+      $uid = \Drupal::currentUser()->id();
+      $webform_id = 'auction_';
+      \Drupal::messenger()->addMessage(t('Webform accessed successfully.'));
+
+      // Check if the user has already submitted the webform.
+      $existing_submissions = \Drupal::entityTypeManager()
+        ->getStorage('webform_submission')
+        ->loadByProperties(['webform_id' => $webform_id, 'uid' => $uid]);
+
+      if (!empty($existing_submissions)) {
+        // User has already submitted the webform, so disable the form elements.
+        \Drupal::messenger()->addMessage(t('Webform accessed successfully.'));
+        $form['#access'] = FALSE;
+        drupal_set_message(t('You have already submitted this webform. Only one submission is allowed.'), 'error');
+      } else {
+        // Log the user ID and webform ID when the form is accessed.
+        $logger = \Drupal::logger('custom_webform_limit');
+        $logger->info('User ID: @uid, Webform ID: @webform_id', [
+          '@uid' => $uid,
+          '@webform_id' => $webform_id,
+        ]);
+
+        // Add a message using the Messenger service.
+        \Drupal::messenger()->addMessage(t('Webform accessed successfully.'));
+      }
+    }
+  }
+}

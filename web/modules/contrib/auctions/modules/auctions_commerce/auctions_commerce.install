@@ -1,0 +1,17 @@
+<?php
+
+/**
+ * @file
+ */
+
+/**
+ * Implements hook_install().
+ */
+function auctions_commerce_install() {
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function auctions_commerce_uninstall() {
+}

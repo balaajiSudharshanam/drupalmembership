@@ -1,0 +1,19 @@
+customauction.customauction_form_data:
+  path: '/bid'
+  defaults:
+    _form: '\Drupal\customauction\Form\customauctionForm'
+    _title: 'bidding'
+  requirements:
+    _permission: 'access content'
+    _access: 'TRUE'
+
+
+customauction.customauction_list_data:
+  path: '/list'
+  defaults:
+    _controller: '\Drupal\customauction\Controller\customauctionController::index'
+    _title: 'sample form view'
+  
+  requirements:
+    _permission: 'access content'
+    _access: 'TRUE'

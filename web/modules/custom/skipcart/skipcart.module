@@ -1,0 +1,16 @@
+<?php 
+use Drupal\Core\Form\FormStateInterface;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+
+
+function skipcart_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  if (strpos($form_id, 'commerce_order_item_add_to_cart_form_commerce_product') !== false) {
+    $form['actions']['submit']['#submit'][] = 'skipcart_cart_alter_sub';
+ }
+}
+function skipcart_cart_alter_sub(&$form, FormStateInterface $form_state) {
+  $responce =  new RedirectResponse('/membership/web/cart ');
+  $responce->send();
+}
+
+

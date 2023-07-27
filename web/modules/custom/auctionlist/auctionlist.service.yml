@@ -1,0 +1,6 @@
+services:
+  auctionlist.bidding_block:
+    class: Drupal\auctionlist\Plugin\Block\biddingblock
+    arguments: ['@configuration', 'auctionlist_block', '@plugin.manager.block', '@database', '@url_generator', '@current_route_match']
+    tags:
+      - { name: block.plugin }

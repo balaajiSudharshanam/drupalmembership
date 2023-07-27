@@ -1,0 +1,19 @@
+countdown:
+  version: 1.x
+  js:
+    js/jquery.auctionCountdown.js: {}
+    js/drupal.behaviors.auctionCountdown.js: {}
+  css:
+    component:
+      css/auction-countdown.css: {}
+  dependencies:
+    - core/drupal
+    - core/drupalSettings
+    - core/jquery
+    - core/jquery.once
+
+bidders:
+  version: 1.x
+  css:
+    component:
+      css/auction-bidders.css: {}

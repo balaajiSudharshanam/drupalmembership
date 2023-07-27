@@ -1,0 +1,44 @@
+<?php
+/**
+ * Implements hook_field_info().
+ */
+function newfield_field_info() {
+    return [
+      'custom_comments' => [
+        'label' => t('name'),
+        'description' => t('Field type for custom comments.'),
+        'default_widget' => 'custom_comments_default_widget',
+        'default_formatter' => 'custom_comments_default_formatter',
+        'settings' => [
+          // Define any additional settings for your field type.
+        ],
+      ],
+    ];
+  }
+  
+  /**
+ * Implements hook_field_widget_info().
+ */
+function custom_comments_field_widget_info() {
+    return [
+      'custom_comments_default_widget' => [
+        'label' => t('Custom Comments widget'),
+        'field_types' => ['custom_comments'],
+        'settings' => [],
+        'class' => 'Drupal\newfield\Plugin\Field\FieldWidget\CustomCommentsWidget',
+      ],
+    ];
+  }
+  
+  /**
+   * Implements hook_field_formatter_info().
+   */
+  function newfield_field_formatter_info() {
+    return [
+      'custom_comments_default_formatter' => [
+        'label' => t('Custom Comments formatter'),
+        'field types' => ['custom_comments'],
+      ],
+    ];
+  }
+  

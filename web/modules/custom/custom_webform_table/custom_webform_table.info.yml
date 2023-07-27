@@ -1,0 +1,5 @@
+name: 'Custom Webform Table'
+type: module
+description: 'Displays webform submissions in a table format as a block'
+core_version_requirement: ^8 || ^10
+package: Custom

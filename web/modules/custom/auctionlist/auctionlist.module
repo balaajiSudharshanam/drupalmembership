@@ -1,0 +1,24 @@
+<?php
+/**
+ * Returns a button with an onclick function.
+ *
+ * @param string $buttonText
+ *   The text to display on the button.
+ * @param string $onClickFunction
+ *   The JavaScript function to be executed when the button is clicked.
+ *
+ * @return array
+ *   The render array representing the button element.
+ */
+function auctionlist_create_button($buttonText, $onClickFunction) {
+    $button = [
+      '#type' => 'button',
+      '#value' => $buttonText,
+      '#attributes' => [
+        'onclick' => $onClickFunction,
+      ],
+    ];
+  
+    return $button;
+  }
+  

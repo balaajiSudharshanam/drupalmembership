@@ -1,0 +1,204 @@
+<?php
+//custom module by balaaji sudharshanam, hapus infotech
+
+/**
+ * Implements hook_cron().
+ */
+
+use Drupal\node\Entity\Node;
+use Drupal\node\NodeInterface;
+use Drupal\Core\Entity\EntityTypeManagerInterface;
+use Psr\Log\LoggerInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
+
+
+// function autoscheduler_cron()
+// {
+//     $old_nodes = Drupal::service('autoscheduler.old_nodes')->load();
+//     foreach ($old_nodes as $node) {
+//         $node->setPublished(false);
+//         $node->save();
+//     }
+    
+// }
+
+
+
+// use  \Drupal\node\Entity\Node;
+
+/**
+ * Implements hook_cron().
+ */
+// function autoscheduler_cron() {
+//    $query = \Drupal::entityQuery('node');
+   
+//   $query->condition('status', 0);   //for Example1.
+//    $query->condition('status', 1);  //for Example2.
+  
+//   $query->condition('type', 'article');
+//   $entity_ids = $query->execute();
+//   foreach ($entity_ids as $entity_id) {
+//     $node = Node::load($entity_id);
+    
+//     $node->setPublished();  //for Example1.
+//     $node->setUnpublished();  //for Example2.
+    
+//     $node->save();
+//   }
+// }
+
+
+/**                                                                           
+ * Implements hook_form_alter().                                              
+ */                                                                           
+// function scheduler_form_node_form_alter(&$form, &$form_state, $form_id) {                 
+//   if ($form_id == $form['#node']->type .'membership') {
+//     $form['#after_build'][] = 'example_after_build';      
+                     
+//   }                                                                           
+// }
+
+// function example_after_build($form, &$form_state) {                           
+//   $field = 'unpublish_on';
+//   $form[$field]['und'][0]['value']['#attributes']['readonly'] = 'readonly';
+//   $form_state['values'][$field]['und'][0]['value'] = $form[$field]['und'][0]['value']['#default_value'];
+//   return $form;
+// }
+// use Drupal\node\Entity\Node;
+
+// // Get the node IDs of the nodes to unpublish.
+// $query = \Drupal::entityQuery('node')
+//   ->condition('type', 'membership')
+//   ->condition('status', 1)
+//   ->accessCheck(FALSE);
+// $nids = $query->execute();
+
+// // Load and unpublish each node.
+// foreach ($nids as $nid) {
+//   $node = Node::load($nid);
+//   $node->setPublished(FALSE);
+//   $node->save();
+// }
+// use Drupal\node\NodeInterface;
+// use Drupal\Core\Entity\EntityTypeManagerInterface;
+
+// /**
+//  * Implements hook_cron().
+//  */
+// function autoscheduler_cron() {
+//   // Load necessary services.
+//   $entity_type_manager = \Drupal::entityTypeManager();
+
+//   // Get the node storage.
+//   $node_storage = $entity_type_manager->getStorage('node');
+
+//   // Load and unpublish nodes of a specific content type.
+//   $nodes = $node_storage->loadByProperties(['type' => 'your_content_type', 'status' => 1]);
+//   foreach ($nodes as $node) {
+//     $node->setPublished(FALSE);
+//     $node_storage->save($node);
+//   }
+// }
+
+// use Drupal\node\Entity\Node;
+
+// // Get the node IDs of the nodes to unpublish.
+// $query = \Drupal::entityQuery('node')
+//   ->condition('type', 'membership')
+//   ->condition('status', 1)
+//   ->accessCheck(FALSE);
+// $nids = $query->execute();
+
+// // Load and unpublish each node.
+// foreach ($nids as $nid) {
+//   $node = Node::load($nid);
+//   $node->setPublished(FALSE);
+//   $node->save();
+// }
+// use Drupal\node\NodeInterface;
+// use Drupal\Core\Entity\EntityTypeManagerInterface;
+
+// /**
+//  * Implements hook_cron().
+//  */
+// function autoscheduler_cron() {
+//   // Load necessary services.
+//   $entity_type_manager = \Drupal::entityTypeManager();
+
+//   // Get the node storage.
+//   $node_storage = $entity_type_manager->getStorage('node');
+
+//   // Load and unpublish nodes of a specific content type.
+//   $nodes = $node_storage->loadByProperties(['type' => 'Article', 'status' => 1]);
+//   foreach ($nodes as $node) {
+//     $node->setPublished(FALSE);
+//     $node_storage->save($node);
+//   }
+// }
+// use Drupal\node\NodeInterface;
+// use Drupal\Core\Entity\EntityTypeManagerInterface;
+
+// /**
+//  * Unpublish nodes of a specific content type.
+//  */
+// function autoscheduler_unpublish_nodes() {
+//   $entity_type_manager = \Drupal::service('entity_type.manager');
+//   $node_storage = $entity_type_manager->getStorage('node');
+
+//   // Load nodes of the specified content type.
+//   $query = $node_storage->getQuery()
+//     ->condition('type', 'article')
+//     ->condition('status', NodeInterface::PUBLISHED);
+//   $nids = $query->execute();
+
+//   // Load and unpublish each node.
+//   foreach ($nids as $nid) {
+//     $node = $node_storage->load($nid);
+//     $node->set('status', NodeInterface::NOT_PUBLISHED);
+//     $node->save();
+//   }
+// }
+/**
+ * Implements hook_cron().
+ */
+function autoscheduler_cron() {
+
+    autoscheduler_custom_function();
+  }
+  
+
+  function autoscheduler_custom_function() {
+ 
+
+    $entity_type_manager = \Drupal::entityTypeManager();
+  $node_storage = $entity_type_manager->getStorage('node');
+
+
+  $timestamp = strtotime('-2 minutes');
+
+
+  $query = $node_storage->getQuery()
+    ->condition('type', 'membership')
+    ->condition('created', $timestamp, '<')
+    ->condition('status', Node::PUBLISHED)
+    ->accessCheck(FALSE);
+  $nids = $query->execute();
+
+
+  
+
+ 
+  foreach ($nids as $nid) {
+    $node = $node_storage->load($nid);
+    $node->set('status', FALSE);
+    $node->save();
+    if ($node->id()) {
+      \Drupal::logger('autoscheduler')->notice('Node unpublished: ' . $node->id());
+    } else {
+      \Drupal::logger('autoscheduler')->error('Error saving node: ' . $node->id());
+    }
+  }
+  
+  }
+  
+

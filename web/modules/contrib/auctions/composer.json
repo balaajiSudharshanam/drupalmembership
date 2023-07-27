@@ -1,0 +1,31 @@
+{
+    "name": "drupal/auctions",
+    "type": "drupal-module",
+    "description": "Auctions toolkit for Drupal 8 & 9.",
+    "keywords": [
+        "Drupal",
+        "Commerce",
+        "Auctions",
+        "Auction"
+    ],
+    "homepage": "https://www.drupal.org/project/auctions",
+    "minimum-stability": "dev",
+    "support": {
+        "issues": "https://www.drupal.org/project/issues/auctions",
+        "source": "http://cgit.drupalcode.org/auctions"
+    },
+    "require": {
+        "drupal/core": "^8.2 || ^9.0",
+        "drupal/address": "^1.8",
+        "drupal/commerce": "^2.0",
+        "drupal/inline_entity_form": "^1.0"
+    },
+    "authors": [
+        {
+            "name": "Scott Carpenter",
+            "email": "drupal-auctions@goodscott.com",
+            "homepage": "https://www.drupal.org/u/skaught",
+            "role": "Drupal Developer"
+        }
+    ]
+}

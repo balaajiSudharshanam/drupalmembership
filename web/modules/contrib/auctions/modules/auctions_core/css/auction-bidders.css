@@ -1,0 +1,10 @@
+.view-bids-relist-group.view-id-bids_relist_group .form--inline {
+  text-align: right
+}
+
+.view-bids-relist-group.view-id-bids_relist_group .form-item,
+.view-bids-relist-group.view-id-bids_relist_group .form-actions,
+.view-bids-relist-group.view-id-bids_relist_group label {
+  display: inline;
+  float: inherit;
+}

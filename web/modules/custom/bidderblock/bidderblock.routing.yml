@@ -1,0 +1,10 @@
+bidderblock.delete:
+  path: '/bidderblock/delete/{id}'
+  defaults:
+    _controller: '\Drupal\bidderblock\Controller\bidderblockController::deleteRecord'
+    _title: 'Delete Record'
+  requirements:
+    _permission: 'administer site configuration'
+    id: \d+
+
+

@@ -1,0 +1,71 @@
+<?php
+function auctionlist_schema() {
+  $schema['auctionlist'] = array(
+    'fields' => array(
+      'id'=>array(
+        'type'=>'serial',
+        'not null' => TRUE,
+      ),
+    //   'name'=>array(
+    //     'type' => 'varchar',
+    //     'length' => 40,
+    //     'not null' => TRUE,
+    //   ),
+    //   'bid'=>array(
+    //     'type' => 'varchar',
+    //     'length' => 40,
+    //     'not null' => TRUE,
+    //   ),
+    //   'ownerid'=>array(
+    //     'type'=>'varchar',
+    //     'length'=>'250'
+    //   ),
+      'currid'=>array(
+        'type'=>'varchar',
+        'length'=>'250'
+      ),
+      'nid'=>array(
+        'type'=>'varchar',
+        'length'=>'250'
+      ),
+    //   'file_id' => array(
+    //     'type' => 'text', // Use 'text' type to store comma-separated file IDs.
+    //     'not null' => TRUE,
+    //     'size' => 'big',
+    //     'description' => 'The file IDs for the uploaded files.',
+    //   ),
+      'claim'=>[
+        'type'=>'int',
+        'size'=>'small',
+      ],
+    //   'description'=>array(
+    //     'type' => 'varchar',
+    //     'length' => '500',
+    //     'not null' => TRUE,
+    //   ),
+      
+      // 'mail'=>array(
+      //   'type' => 'varchar',
+      //   'length' => 40,
+      //   'not null' => TRUE,
+      //   ),
+      // 'phone'=>array(
+      //   'type' => 'varchar',
+      //   'length' => 25,
+      //   'not null' => TRUE,
+      // ),
+      // 'dob'=>array(
+      //   'type' => 'varchar',
+      //   'length' => 40,
+      //   'not null' => TRUE,
+      // ),
+      // 'gender'=>array(
+      //   'type' => 'varchar',
+      //   'length' => 25,
+      //   'not null' => TRUE,
+      // ),
+    ),
+    'primary key' => array('id'),
+  );
+  return $schema;
+}
